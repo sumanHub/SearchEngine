@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   startAt = new Subject();
   endAt = new Subject();
 
-  branch;
-  allbranch;
+  branchs;
+  allbranchs;
 
   startobs = this.startAt.asObservable();
   endobs = this.endAt.asObservable();
@@ -27,12 +27,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getallclubs().subscribe((branch) => {
-      this.allbranch = branch;
+    this.getallclubs().subscribe((branchs) => {
+      this.allbranchs = branchs;
     })
     Observable.combineLatest(this.startobs, this.endobs).subscribe((value) => {
-      this.firequery(value[0], value[1]).subscribe((branch) => {
-        this.branch =branch;
+      this.firequery(value[0], value[1]).subscribe((clubs) => {
+        this.branchs = branchs;
       })
     })
   }
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
       this.endAt.next(q + "\uf8ff");
     }
     else {
-      this.branch = this.branch;
+      this.branchs = this.allbranchs;
     }
   }
 
@@ -58,3 +58,4 @@ export class AppComponent implements OnInit {
 
 
 }
+
